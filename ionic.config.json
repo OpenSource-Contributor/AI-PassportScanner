@@ -1,0 +1,7 @@
+{
+  "name": "passport-scanner",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular"
+}
