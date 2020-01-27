@@ -1,14 +1,42 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>
-      Ionic Blank
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
+<ion-content class="ion-padding">
+    <img [src]="image">
+    <ion-button (click)="processImage()">Process</ion-button>
+    <ion-button color="danger" (click)="onClear()">Clear</ion-button>
+    <mat-progress-bar mode="indeterminate" *ngIf="isProcessing" style="height: 5px;"></mat-progress-bar>
 
-<ion-content>
-  <div class="ion-padding">
-    The world is your oyster.
-    <p>If you get lost, the <a target="_blank" rel="noopener" href="https://ionicframework.com/docs/">docs</a> will be your guide.</p>
-  </div>
+    <mat-card *ngIf="passportInfo">
+        <form [formGroup]="form" class="example-form">
+            <mat-form-field class="full-width">
+                <input matInput placeholder="Passport No" formControlName="passportNo">
+            </mat-form-field>
+
+            <mat-form-field class="full-width">
+                <input matInput placeholder="Country" formControlName="country">
+            </mat-form-field>
+
+            <mat-form-field class="full-width">
+                <input matInput placeholder="Given Name" formControlName="givenName">
+            </mat-form-field>
+
+            <mat-form-field class="full-width">
+                <input matInput placeholder="Surname" formControlName="surname">
+            </mat-form-field>
+
+            <mat-form-field class="full-width">
+                <input matInput placeholder="Gender" formControlName="gender">
+            </mat-form-field>
+
+            <mat-form-field class="full-width">
+                <input matInput placeholder="Passport No" formControlName="nationality">
+            </mat-form-field>
+
+            <mat-form-field class="full-width">
+                <input matInput placeholder="Nationality" formControlName="dob">
+            </mat-form-field>
+
+            <mat-form-field class="full-width">
+                <input matInput placeholder="Expiry Date" formControlName="expiryDate">
+            </mat-form-field>
+        </form>
+    </mat-card>
 </ion-content>
