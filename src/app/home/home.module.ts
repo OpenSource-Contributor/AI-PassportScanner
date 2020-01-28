@@ -8,7 +8,8 @@ import { HomePageRoutingModule } from './home-routing.module';
 
 import { HomePage } from './home.page';
 import {ImageCropperModule} from 'ngx-image-cropper';
-import {MatCardModule, MatFormFieldModule, MatInputModule, MatProgressBarModule} from '@angular/material';
+import {MatCardModule, MatFormFieldModule, MatIconModule, MatInputModule, MatProgressBarModule} from '@angular/material';
+import {FlexModule} from '@angular/flex-layout';
 
 @NgModule({
     imports: [
@@ -21,7 +22,9 @@ import {MatCardModule, MatFormFieldModule, MatInputModule, MatProgressBarModule}
         MatFormFieldModule,
         MatInputModule,
         MatCardModule,
-        MatProgressBarModule
+        MatProgressBarModule,
+        FlexModule,
+        MatIconModule
     ],
   declarations: [HomePage]
 })

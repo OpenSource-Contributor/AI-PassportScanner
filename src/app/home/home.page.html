@@ -1,8 +1,53 @@
+<ion-header>
+    <ion-toolbar color="primary">
+        <ion-title>
+            <img src="assets/images/logo-app.png"/>
+        </ion-title>
+    </ion-toolbar>
+    <ion-toolbar>
+        <ion-row>
+            <ion-title><h3> Passport Scanner</h3></ion-title>
+        </ion-row>
+    </ion-toolbar>
+</ion-header>
 <ion-content class="ion-padding">
-    <img [src]="image">
-    <ion-button (click)="processImage()">Process</ion-button>
-    <ion-button color="danger" (click)="onClear()">Clear</ion-button>
+    <div fxLayout="row">
+        <div fxFlex="40"></div>
+        <div fxFlex="20">
+            <ion-button (click)="capture()"><ion-icon name="camera"></ion-icon></ion-button>
+        </div>
+    </div>
     <mat-progress-bar mode="indeterminate" *ngIf="isProcessing" style="height: 5px;"></mat-progress-bar>
+
+    <div fxLayout="row">
+        <div fxFlex="10%"></div>
+        <div fxFlex="80%">
+        <image-cropper *ngIf="image && !passportInfo"
+                       [imageBase64]="image"
+                       [maintainAspectRatio]="true"
+                       [aspectRatio]="20 / 3"
+                       [resizeToWidth]="1000"
+                       format="jpeg"
+                       (imageCropped)="imageCropped($event)"
+                       (imageLoaded)="imageLoaded()"
+                       (loadImageFailed)="loadImageFailed()"
+        ></image-cropper>
+        </div>
+    </div>
+    <mat-card *ngIf="isProcessing">
+        <img [src]="croppedImage" />
+    </mat-card>
+
+    <div fxLayout="row">
+        <div fxFlex="40">
+            <ion-button *ngIf="croppedImage" color="secondary" (click)="processImage()">Process</ion-button>
+        </div>
+        <div fxFlex="40"></div>
+        <div fxFlex="40">
+            <ion-button *ngIf="passportInfo" color="danger" (click)="onClear()">Clear</ion-button>
+        </div>
+    </div>
+
 
     <mat-card *ngIf="passportInfo">
         <form [formGroup]="form" class="example-form">
@@ -27,7 +72,7 @@
             </mat-form-field>
 
             <mat-form-field class="full-width">
-                <input matInput placeholder="Passport No" formControlName="nationality">
+                <input matInput placeholder="Nationality" formControlName="nationality">
             </mat-form-field>
 
             <mat-form-field class="full-width">
@@ -39,4 +84,5 @@
             </mat-form-field>
         </form>
     </mat-card>
+
 </ion-content>
