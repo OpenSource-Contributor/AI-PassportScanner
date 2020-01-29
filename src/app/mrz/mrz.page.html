@@ -1,0 +1,58 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>
+      <img src="assets/images/logo-app.png"/>
+    </ion-title>
+  </ion-toolbar>
+  <ion-toolbar>
+    <ion-row>
+      <ion-title><h3> Passport Scanner</h3></ion-title>
+    </ion-row>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <div fxLayout="row">
+    <div fxFlex="40%"></div>
+    <div fxFlex="20%">
+      <ion-button (click)="startMrzScanner()"><ion-icon name="camera"></ion-icon></ion-button>
+    </div>
+  </div>
+
+  <mat-card *ngIf="isResult">
+    <form [formGroup]="form" class="example-form">
+      <mat-form-field class="full-width">
+        <input matInput placeholder="Passport No" formControlName="passportNo">
+      </mat-form-field>
+
+      <mat-form-field class="full-width">
+        <input matInput placeholder="Country" formControlName="country">
+      </mat-form-field>
+
+      <mat-form-field class="full-width">
+        <input matInput placeholder="Given Name" formControlName="givenName">
+      </mat-form-field>
+
+      <mat-form-field class="full-width">
+        <input matInput placeholder="Surname" formControlName="surname">
+      </mat-form-field>
+
+      <mat-form-field class="full-width">
+        <input matInput placeholder="Gender" formControlName="gender">
+      </mat-form-field>
+
+      <mat-form-field class="full-width">
+        <input matInput placeholder="Nationality" formControlName="nationality">
+      </mat-form-field>
+
+      <mat-form-field class="full-width">
+        <input matInput placeholder="Nationality" formControlName="dob">
+      </mat-form-field>
+
+      <mat-form-field class="full-width">
+        <input matInput placeholder="Expiry Date" formControlName="expiryDate">
+      </mat-form-field>
+    </form>
+  </mat-card>
+
+</ion-content>

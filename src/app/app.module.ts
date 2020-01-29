@@ -18,12 +18,17 @@ import {MatFormFieldModule, MatProgressBarModule} from '@angular/material';
 import {BrowserModule} from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {FlexLayoutModule} from '@angular/flex-layout';
+import { File } from '@ionic-native/file/ngx';
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
-  imports: [BrowserModule, FlexLayoutModule, BrowserAnimationsModule, IonicModule.forRoot(), AppRoutingModule, ImageCropperModule, HttpClientModule, MatFormFieldModule, ReactiveFormsModule, MatProgressBarModule],
+  imports: [BrowserModule, FlexLayoutModule,
+    BrowserAnimationsModule, IonicModule.forRoot(),
+    AppRoutingModule, ImageCropperModule, HttpClientModule,
+    MatFormFieldModule, ReactiveFormsModule, MatProgressBarModule],
   providers: [
     StatusBar,
+      File,
     SplashScreen,
       Camera,
       Crop,

@@ -17,7 +17,7 @@
             <ion-button (click)="capture()"><ion-icon name="camera"></ion-icon></ion-button>
         </div>
     </div>
-    <mat-progress-bar mode="indeterminate" *ngIf="isProcessing" style="height: 5px;"></mat-progress-bar>
+    <mat-progress-bar mode="indeterminate" *ngIf="(isProcessing || isCapture) && !passportInfo" style="height: 5px;"></mat-progress-bar>
 
     <div fxLayout="row">
         <div fxFlex="10%"></div>
@@ -39,11 +39,11 @@
     </mat-card>
 
     <div fxLayout="row">
-        <div fxFlex="40">
+        <div fxFlex="20%">
             <ion-button *ngIf="croppedImage" color="secondary" (click)="processImage()">Process</ion-button>
         </div>
-        <div fxFlex="40"></div>
-        <div fxFlex="40">
+        <div fxFlex="50%"></div>
+        <div fxFlex="30%">
             <ion-button *ngIf="passportInfo" color="danger" (click)="onClear()">Clear</ion-button>
         </div>
     </div>

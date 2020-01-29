@@ -14,6 +14,7 @@ export class HomePage implements OnInit {
   passportInfo;
   isProcessing = false;
   imageChangedEvent;
+  isCapture = false;
   cameraOptions: CameraOptions = {
     destinationType: this.camera.DestinationType.DATA_URL,
     encodingType: this.camera.EncodingType.JPEG,
@@ -34,11 +35,15 @@ export class HomePage implements OnInit {
     });
   }
   capture() {
+    this.isCapture = false;
+    this.onClear();
+    this.isCapture = true;
     this.isProcessing = false;
     this.camera.getPicture(this.cameraOptions).then((imageData) => {
       const base64Image = 'data:image/jpeg;base64,' + imageData;
       this.image = base64Image;
     }, (err) => {
+      this.isCapture = false;
       console.log(err);
     });
   }
@@ -61,8 +66,11 @@ export class HomePage implements OnInit {
     });
   }
   onClear() {
+    this.isCapture = false;
     this.passportInfo = null;
     this.isProcessing = false;
+    this.image = '';
+    this.croppedImage = '';
   }
   imageCropped(image) {
     this.croppedImage = image.base64;
