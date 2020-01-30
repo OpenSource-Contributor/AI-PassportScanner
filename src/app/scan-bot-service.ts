@@ -20,11 +20,10 @@ export class ScanBotService {
   }
 
   private initScanbotSdk() {
-    // optional storageBaseDirectory - see the comments below.
     const customStorageBaseDirectory = this.getDemoStorageBaseDirectory();
 
     const config: ScanbotSDKConfiguration = {
-      loggingEnabled: true, // Consider switching logging OFF in production builds for security and performance reasons!
+      loggingEnabled: true,
       licenseKey: this.myLicenseKey,
       storageImageFormat: 'JPG',
       storageImageQuality: 80,
@@ -38,27 +37,6 @@ export class ScanBotService {
   }
 
   private getDemoStorageBaseDirectory(): string {
-    // tslint:disable:max-line-length
-    // !! Please note !!
-    // It is strongly recommended to use the default (secure) storage location of the Scanbot SDK.
-    // However, for demo purposes we overwrite the "storageBaseDirectory" of the Scanbot SDK by a custom storage directory.
-    //
-    // On Android we use the "externalDataDirectory" which is a public(!) folder.
-    // All image files and export files (PDF, TIFF, etc) created by the Scanbot SDK in this demo app will be stored
-    // in this public storage directory and will be accessible for every(!) app having external storage permissions!
-    // Again, this is only for demo purposes, which allows us to easily fetch and check the generated files
-    // via Android "adb" CLI tools, Android File Transfer app, Android Studio, etc.
-    //
-    // On iOS we use the "documentsDirectory" which is accessible via iTunes file sharing.
-    //
-    // For more details about the storage system of the Scanbot SDK Plugin please see our docs:
-    // - https://scanbotsdk.github.io/documentation/cordova/
-    //
-    // For more details about the file system on Android and iOS we also recommend to check out:
-    // - https://developer.android.com/guide/topics/data/data-storage
-    // - https://developer.apple.com/library/archive/documentation/FileManagement/Conceptual/FileSystemProgrammingGuide/FileSystemOverview/FileSystemOverview.html
-    // tslint:enable:max-line-length
-
     if (this.platform.is('android')) {
       return this.file.externalDataDirectory + 'my-custom-storage';
     } else if (this.platform.is('ios')) {
@@ -70,7 +48,6 @@ export class ScanBotService {
   public async checkLicense() {
     const result = await this.SDK.isLicenseValid();
     if (result.isLicenseValid === true) {
-      // OK - we have a trial session, a valid trial license or valid production license.
       return true;
     }
     this.dialogsService.showAlert('Scanbot SDK (trial) license has expired!');
@@ -79,16 +56,10 @@ export class ScanBotService {
 
   public globalDocScannerConfigs(): DocumentScannerConfiguration {
     return {
-      // Customize colors, text resources, behavior, etc..
       cameraPreviewMode: 'FIT_IN',
       orientationLockMode: 'PORTRAIT',
       pageCounterButtonTitle: '%d Page(s)',
       multiPageEnabled: true,
-      // maxNumberOfPages: 3,
-      // documentImageSizeLimit: { width: 1500, height: 2000 },
-      // shutterButtonHidden: true,
-      // bottomBarBackgroundColor: '#0000ff',
-      // ...
     };
   }
 }
