@@ -15,10 +15,16 @@
   <div fxLayout="row">
     <div fxFlex="40%"></div>
     <div fxFlex="20%">
-      <ion-button (click)="startMrzScanner()"><ion-icon name="camera"></ion-icon></ion-button>
+      <ion-button (click)="startMrzScanner()"><ion-icon name="qr-scanner"></ion-icon> &nbsp; Scan</ion-button>
     </div>
   </div>
 
+  <div fxLayout="row">
+    <div fxFlex="80%"></div>
+    <div fxFlex="20%">
+      <ion-button *ngIf="isResult" color="danger" (click)="onClear()">Clear</ion-button>
+    </div>
+  </div>
   <mat-card *ngIf="isResult">
     <form [formGroup]="form" class="example-form">
       <mat-form-field class="full-width">
@@ -46,11 +52,16 @@
       </mat-form-field>
 
       <mat-form-field class="full-width">
-        <input matInput placeholder="Nationality" formControlName="dob">
+        <input [matDatepicker]="picker4" matInput placeholder="Date of Birth" formControlName="dob">
+        <mat-datepicker-toggle [for]="picker4" matSuffix></mat-datepicker-toggle>
+        <mat-datepicker #picker4></mat-datepicker>
       </mat-form-field>
 
       <mat-form-field class="full-width">
-        <input matInput placeholder="Expiry Date" formControlName="expiryDate">
+        <input matInput [matDatepicker]="picker6" placeholder="Expiry Date"
+               formControlName="expiryDate">
+        <mat-datepicker-toggle matSuffix [for]="picker6"></mat-datepicker-toggle>
+        <mat-datepicker #picker6></mat-datepicker>
       </mat-form-field>
     </form>
   </mat-card>

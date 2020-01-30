@@ -90,4 +90,7 @@ export class MrzPage implements OnInit {
       }
     }
   }
+  onClear() {
+    this.isResult = false;
+  }
 }
